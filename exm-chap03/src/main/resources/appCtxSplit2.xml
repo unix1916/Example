@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="regSvc" class="spring.MemberRegisterService">
+		<constructor-arg ref="memberDao" />
+	</bean>
+
+	<bean id="chgSvc" class="spring.ChangePasswordService">
+		<constructor-arg ref="memberDao" />
+	</bean>
+
+	<bean id="printSvc" class="spring.MemberListPrinter">
+		<!-- 생성자 전달방식의 DI -->
+		<constructor-arg ref="memberDao" />
+		<constructor-arg ref="memPrinter" />
+	</bean>
+
+	<bean id="printInfo" class="spring.MemberInfoPrinter">
+		<!-- Setter 전달방식의 DI -->
+		<property name="memberDao" ref="memberDao" />
+		<property name="memberPrinter" ref="memPrinter" />
+	</bean>
+
+	<bean id="versionPrint" class="spring.VersionPrinter">
+		<!-- int값 DI -->
+		<property name="major" value="4" /> <!-- 변수 타입에 맞추어 자동으로 type이 변경됨 -->
+		<property name="minor">
+			<value>2</value>		<!-- type에 맞는 형식의 값을 넣어야함 -->
+		</property>
+	</bean>
+
+</beans>
