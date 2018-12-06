@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+
+	<!-- @Resource annotation을 이용하여 memberDao 빈을 주입  -->
+	<bean id="memberDao" class="spring.MemberDao" />
+	<bean id="memberDao2" class="spring.MemberDao" />
+	
+	<!-- @Autowired annotation이 setMemPrinter(memPrinter) 에 선언되어있고
+		memPriner 가 같기때문에  같은 이름의  빈을 주입한다.  -->
+	<bean id="memPrinter" class="spring.MemberPrinter" />
+	<bean id="printer2" class="spring.MemberPrinter" />
+
+
+
+	<bean id="regSvc" class="spring.MemberRegisterService">
+	</bean>
+
+	<bean id="printInfo" class="spring.MemberInfoPrinter">
+	</bean>
+
+</beans>
